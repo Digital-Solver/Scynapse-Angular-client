@@ -22,6 +22,10 @@ export class UserRegistrationService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
+
 export class UserLoginService {
   constructor(private http: HttpClient) {
   }
@@ -34,6 +38,9 @@ export class UserLoginService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class GetAllMoviesService {
   constructor(private http: HttpClient) {
   }
@@ -55,6 +62,9 @@ export class GetAllMoviesService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class GetOneMovieService {
   constructor(private http: HttpClient) {
   }
@@ -75,6 +85,9 @@ export class GetOneMovieService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class GetDirectorService {
   constructor(private http: HttpClient) {
   }
@@ -96,6 +109,9 @@ export class GetDirectorService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class GetGenreService {
   constructor(private http: HttpClient) {
   }
@@ -116,6 +132,9 @@ export class GetGenreService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class GetUserDetailsService {
   constructor(private http: HttpClient) {
   }
@@ -137,6 +156,9 @@ export class GetUserDetailsService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class GetUserFavoriteMoviesService {
   constructor(private http: HttpClient) {
   }
@@ -158,6 +180,9 @@ export class GetUserFavoriteMoviesService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class AddUserFavoriteMovieService {
   constructor(private http: HttpClient) {
   }
@@ -181,6 +206,9 @@ export class AddUserFavoriteMovieService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class DeleteUserFavoriteMovieService {
   constructor(private http: HttpClient) {
   }
@@ -202,6 +230,9 @@ export class DeleteUserFavoriteMovieService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class EditUserDetailsService {
   constructor(private http: HttpClient) {
   }
@@ -225,6 +256,9 @@ export class EditUserDetailsService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class DeleteUserService {
   constructor(private http: HttpClient) {
   }
