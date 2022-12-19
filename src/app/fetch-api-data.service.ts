@@ -30,7 +30,7 @@ export class UserLoginService {
 
   public logUserIn(userLoginDetails: any): Observable<any> {
     return this.http
-      .post(`${domainURL}/login`, null, {params: userLoginDetails})
+      .post(`${domainURL}/login`, null, { params: userLoginDetails })
       .pipe(catchError(HttpErrorHandler.logAndReturnError));
   }
 }
@@ -50,10 +50,8 @@ export class GetAllMoviesService {
       headers: new HttpHeaders({
         Authorization: "Bearer " + this.token,
       }),
-    }
-    )
-      .pipe(
-        map((res) => { res || {} }),
+    }).pipe(
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       )
   }
