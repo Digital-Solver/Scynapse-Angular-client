@@ -9,7 +9,6 @@ const domainURL = "https://kds-movie-api.herokuapp.com"
 @Injectable({
   providedIn: 'root'
 })
-
 export class UserRegistrationService {
   constructor(private http: HttpClient) {
   }
@@ -25,16 +24,14 @@ export class UserRegistrationService {
 @Injectable({
   providedIn: 'root'
 })
-
 export class UserLoginService {
   constructor(private http: HttpClient) {
   }
 
   public logUserIn(userLoginDetails: any): Observable<any> {
-    return this.http.post(
-      `${domainURL}/users`,
-      userLoginDetails
-    ).pipe(catchError(HttpErrorHandler.logAndReturnError));
+    return this.http
+      .post(`${domainURL}/login`, null, {params: userLoginDetails})
+      .pipe(catchError(HttpErrorHandler.logAndReturnError));
   }
 }
 
