@@ -10,12 +10,19 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { UserLoginService } from './fetch-api-data.service';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+
+const appRoutes: Routes = [
+  { path: 'welcome', component: WelcomePageComponent },
+  { path: 'movies', component: MovieCardComponent },
+  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' }
+];
 
 @NgModule({
   declarations: [
@@ -37,6 +44,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
     MatDialogModule,
     MatSnackBarModule,
     FormsModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [
     UserLoginService,
