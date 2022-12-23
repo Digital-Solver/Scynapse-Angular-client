@@ -125,7 +125,7 @@ export class GetGenreService {
 
   public getGenre(genreName: string): Observable<any> {
     return this.http.get(
-      `${domainURL}/genre/${genreName.replace(/\s/g, '%20')}`, {
+      `${domainURL}/genres/${genreName.replace(/\s/g, '%20')}`, {
       headers: new HttpHeaders({
         Authorization: "Bearer " + this.token,
       }),
