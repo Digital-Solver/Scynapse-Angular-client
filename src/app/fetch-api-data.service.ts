@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable, BehaviorSubject, EMPTY } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { HttpErrorHandler } from './http-error-handler';
+
 
 const domainURL = "https://kds-movie-api.herokuapp.com"
 
@@ -25,13 +26,22 @@ export class UserRegistrationService {
   providedIn: 'root'
 })
 export class UserLoginService {
+  isLoggedIn$ = new BehaviorSubject<boolean>(!!localStorage.getItem('user'));
+
   constructor(private http: HttpClient) {
   }
 
   public logUserIn(userLoginDetails: any): Observable<any> {
     return this.http
       .post(`${domainURL}/login`, null, { params: userLoginDetails })
-      .pipe(catchError(HttpErrorHandler.logAndReturnError));
+      .pipe(catchError(HttpErrorHandler.logAndReturnError), tap(() => this.isLoggedIn$.next(true)));
+  }
+
+  public logUserOut(): Observable<void> {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.isLoggedIn$.next(false);
+    return EMPTY;
   }
 }
 
@@ -264,7 +274,7 @@ export class DeleteUserService {
 
   public deleteUser(username: string): Observable<any> {
     return this.http.delete(
-      `${ domainURL } /users/${ username } `, {
+      `${domainURL} /users/${username} `, {
       headers: new HttpHeaders({
         Authorization: "Bearer " + this.token,
       }),
