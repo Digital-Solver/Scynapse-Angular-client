@@ -14,7 +14,6 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { UserLoginService } from './fetch-api-data.service';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
-import { DetailViewComponent } from './detail-view/detail-view.component';
 import { HeaderComponent } from './header/header.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component'
 
@@ -42,7 +41,6 @@ const appRoutes: Routes = [
     UserLoginFormComponent,
     MovieCardComponent,
     WelcomePageComponent,
-    DetailViewComponent,
     HeaderComponent,
     ProfileViewComponent,
   ],

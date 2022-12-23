@@ -76,15 +76,15 @@ export class GetOneMovieService {
 
   token = localStorage.getItem("token");
 
-  public getOneMovie(movieDetails: any): Observable<any> {
+  public getOneMovie(movieTitle: string): Observable<any> {
     return this.http.get(
-      `${domainURL}/movies/${movieDetails}`, {
+      `${domainURL}/movies/${movieTitle.replace(/\s/g, '%20')}`, {
       headers: new HttpHeaders({
         Authorization: "Bearer " + this.token,
       }),
     })
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   }
@@ -99,16 +99,16 @@ export class GetDirectorService {
 
   token = localStorage.getItem("token");
 
-  public getDirector(directorDetails: any): Observable<any> {
+  public getDirector(directorName: string): Observable<any> {
     return this.http.get(
-      `${domainURL}/directors/${directorDetails}`, {
+      `${domainURL}/directors/${directorName.replace(/\s/g, '%20')}`, {
       headers: new HttpHeaders({
         Authorization: "Bearer " + this.token,
       }),
     }
     )
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   }
@@ -123,15 +123,15 @@ export class GetGenreService {
 
   token = localStorage.getItem("token");
 
-  public getGenre(genreDetails: any): Observable<any> {
+  public getGenre(genreName: string): Observable<any> {
     return this.http.get(
-      `${domainURL}/genre/${genreDetails}`, {
+      `${domainURL}/genre/${genreName.replace(/\s/g, '%20')}`, {
       headers: new HttpHeaders({
         Authorization: "Bearer " + this.token,
       }),
     })
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   }
@@ -179,7 +179,7 @@ export class GetUserFavoriteMoviesService {
       }),
     })
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   }
@@ -205,7 +205,7 @@ export class AddUserFavoriteMovieService {
         }),
       })
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   }
@@ -229,7 +229,7 @@ export class DeleteUserFavoriteMovieService {
       }),
     })
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   }
@@ -256,7 +256,7 @@ export class EditUserDetailsService {
         }),
       })
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   };
@@ -280,7 +280,7 @@ export class DeleteUserService {
       }),
     })
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   }
