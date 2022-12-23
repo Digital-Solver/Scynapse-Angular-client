@@ -1,1 +1,38 @@
-<p>profile-view works!</p>
+<div *ngIf="editing; else seeDetails">
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <mat-form-field>
+      <input matInput type="text" formControlName="Username" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="email" formControlName="Email" />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="date"
+        formControlName="Birthday"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="password"
+        formControlName="Password"
+      />
+    </mat-form-field>
+    <button mat-raised-button type="submit">Save</button>
+  </form>
+</div>
+
+<ng-template #seeDetails>
+  <p>{{ form.value.Username }}</p>
+  <p>{{ form.value.Email }}</p>
+  <p>{{ form.value.Birthday }}</p>
+  <button mat-raised-button (click)="allowEdits()">Edit</button>
+</ng-template>
+
+<div class="outer-container" [ngStyle]="{ align: 'center' }">
+  <div class="inner-container" [ngStyle]="{ display: 'grid' }">
+    <app-movie-card></app-movie-card>
+  </div>
+</div>

@@ -1,10 +1,10 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <a mat-button href="/" (click)="goToHome()">
+    <a mat-button href="/" (click)="goToHome()"> <!-- TODO: If user logged in, go to movie page. If user not logged in, go to welcome page -->
       <mat-icon>home</mat-icon> Home
     </a>
     <span class="example-spacer"></span>
-    <a mat-button href="/profile" (click)="goToProfile()">
+    <a mat-button href="/profile" (click)="goToProfile()"> <!-- TODO: If user not logged in, show nothing-->
       <mat-icon>person</mat-icon> Profile
     </a>
   </mat-toolbar-row>

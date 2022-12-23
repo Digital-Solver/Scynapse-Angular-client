@@ -51,9 +51,9 @@ export class GetAllMoviesService {
         Authorization: "Bearer " + this.token,
       }),
     }).pipe(
-        map((res: any) => res || {}),
-        catchError(HttpErrorHandler.logAndReturnError)
-      )
+      map((res: any) => res || {}),
+      catchError(HttpErrorHandler.logAndReturnError)
+    )
   }
 }
 
@@ -131,23 +131,23 @@ export class GetGenreService {
   providedIn: 'root'
 })
 export class GetUserDetailsService {
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
-  username = localStorage.getItem("user");
-  token = localStorage.getItem("token");
+  username = localStorage.getItem('user');
+  token = localStorage.getItem('token');
 
-  public getUserDetails(username: string): Observable<any> {
+  public getUserDetails(): Observable<any> {
     return this.http.get(
-      `${domainURL}/users/${username}`, {
-      headers: new HttpHeaders({
-        Authorization: "Bearer " + this.token,
-      }),
-    })
-      .pipe(
-        map((res) => { res || {} }),
-        catchError(HttpErrorHandler.logAndReturnError)
-      );
+      `${domainURL}/users/${this.username}`,
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`,
+        }),
+      }
+    ).pipe(
+      map((res) => res || {}),
+      catchError(HttpErrorHandler.logAndReturnError)
+    );
   }
 }
 
@@ -235,10 +235,11 @@ export class EditUserDetailsService {
   username = localStorage.getItem("user");
   token = localStorage.getItem("token");
 
-  public editUserDetails(username: string, userNewDetails: any): Observable<any> {
-    return this.http.post(
-      `${domainURL}/users/${username}`,
-      userNewDetails,
+  public editUserDetails(newUserDetails: any): Observable<any> {
+    console.log(`User updating to: ${newUserDetails}`);
+    return this.http.put(
+      `${domainURL}/users/${this.username}`,
+      newUserDetails,
       {
         headers: new HttpHeaders({
           Authorization: "Bearer " + this.token,
@@ -248,7 +249,7 @@ export class EditUserDetailsService {
         map((res) => { res || {} }),
         catchError(HttpErrorHandler.logAndReturnError)
       );
-  }
+  };
 }
 
 @Injectable({
@@ -263,7 +264,7 @@ export class DeleteUserService {
 
   public deleteUser(username: string): Observable<any> {
     return this.http.delete(
-      `${domainURL}/users/${username}`, {
+      `${ domainURL } /users/${ username } `, {
       headers: new HttpHeaders({
         Authorization: "Bearer " + this.token,
       }),
