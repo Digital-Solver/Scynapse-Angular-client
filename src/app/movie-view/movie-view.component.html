@@ -1,0 +1,17 @@
+<div class="movie-detail-view">
+  <div class="movie-image">
+    <!-- Movie image -->
+    <img src="{{ movie.imageURL }}" alt="{{ movie.title }}" />
+  </div>
+  <div class="movie-content">
+    <!-- Movie Title -->
+    <h1>{{ movie.title }}</h1>
+    <!-- Director and Genre links -->
+    <div class="movie-metadata">
+      <a href="/directors/{{ movie.director.id }}">{{ movie.director.name }}</a> | 
+      <a href="/genres/{{ movie.genre.id }}">{{ movie.genre.name }}</a>
+    </div>
+    <!-- Movie Description -->
+    <p>{{ movie.description }}</p>
+  </div>
+</div>
