@@ -1,5 +1,6 @@
 // src/app/movie-card/movie-card.component.ts
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GetAllMoviesService } from '../fetch-api-data.service'
 
 @Component({
@@ -9,7 +10,10 @@ import { GetAllMoviesService } from '../fetch-api-data.service'
 })
 export class MovieCardComponent {
   movies: any[] = [];
-  constructor(public getAllMoviesService: GetAllMoviesService) { }
+  constructor(
+    public getAllMoviesService: GetAllMoviesService,
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
     this.getMovies();
@@ -21,5 +25,9 @@ export class MovieCardComponent {
       console.log(this.movies);
       return this.movies;
     });
+  }
+
+  goToMovie(movieTitle: any): void {
+    this.router.navigate(['/movies', movieTitle ])
   }
 }
