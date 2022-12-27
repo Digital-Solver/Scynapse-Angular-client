@@ -40,6 +40,6 @@ export class WelcomePageComponent {
   }
 
   goToMovies() {
-    this.router.navigate(['/movies']);
+    this.router.navigate(['movies']);
   }
 }

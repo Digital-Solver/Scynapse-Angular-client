@@ -23,14 +23,14 @@ export class HeaderComponent {
   }
 
   goToHome() {
-    this.router.navigate(['/']);
+    this.router.navigate(['']);
   }
   
   goToMovies() {
-    this.router.navigate(['/movies']);
+    this.router.navigate(['movies']);
   }
 
   goToProfile() {
-    this.router.navigate(['/profile']);
+    this.router.navigate(['profile']);
   }
 }
