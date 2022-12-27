@@ -6,11 +6,11 @@ import { DeleteUserFavoriteMovieService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-movie-card',
-  templateUrl: './movie-card.component.html',
-  styleUrls: ['./movie-card.component.scss']
+  selector: 'app-movie-card-favorite',
+  templateUrl: './movie-card-favorite.component.html',
+  styleUrls: ['./movie-card-favorite.component.scss']
 })
-export class MovieCardComponent implements OnInit {
+export class MovieCardFavoriteComponent implements OnInit {
   movies: any;
   favoriteMovies: any;
   processing: boolean = false;

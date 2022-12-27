@@ -1,0 +1,18 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <a mat-button href="/" (click)="goToHome()">
+      <mat-icon>home</mat-icon> Home
+    </a>
+    <ng-container *ngIf="loginService.isLoggedIn$ | async as isLoggedIn">
+      <a mat-button href="/movies" (click)="goToMovies()">
+        <mat-icon>ondemand_video</mat-icon> Movies
+      </a>
+    </ng-container>
+    <span class="spacer"></span>
+    <ng-container *ngIf="loginService.isLoggedIn$ | async as isLoggedIn">
+      <a mat-button href="/profile" (click)="goToProfile()">
+        <mat-icon>person</mat-icon> Profile
+      </a>
+    </ng-container>
+  </mat-toolbar-row>
+</mat-toolbar>

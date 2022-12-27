@@ -1,0 +1,13 @@
+<div class="movie-detail-view">
+  <div class="movie-image">
+    <img src="{{ movie.ImageURL }}" alt="{{ movie.Title }}" />
+  </div>
+  <div class="movie-content">
+    <h1>{{ movie.Title }}</h1>
+    <div class="movie-metadata">
+      Director: <a (click)="openDirectorModal(movie.Director.Name)">{{ movie.Director.Name }}</a> | 
+      Genre: <a (click)="openGenreModal(movie.Genre.Name)">{{ movie.Genre.Name }}</a>
+    </div>
+    <p>{{ movie.Description }}</p>
+  </div>
+</div>

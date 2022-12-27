@@ -1,5 +1,5 @@
 <div class="container">
-  <mat-card *ngFor="let movie of movies" style="flex: 1 1 auto">
+  <mat-card *ngFor="let movie of movies" [ngStyle]="{'display': movie.favorite ? 'block' : 'none'}" style="flex: 1 1 auto">
     <mat-card-header>
       <mat-card-title>{{ movie.Title }}</mat-card-title>
       <mat-card-subtitle

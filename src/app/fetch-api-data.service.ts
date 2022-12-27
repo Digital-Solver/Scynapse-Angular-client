@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable, BehaviorSubject, EMPTY } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { HttpErrorHandler } from './http-error-handler';
+
 
 const domainURL = "https://kds-movie-api.herokuapp.com"
 
@@ -25,13 +26,22 @@ export class UserRegistrationService {
   providedIn: 'root'
 })
 export class UserLoginService {
+  isLoggedIn$ = new BehaviorSubject<boolean>(!!localStorage.getItem('user'));
+
   constructor(private http: HttpClient) {
   }
 
   public logUserIn(userLoginDetails: any): Observable<any> {
     return this.http
       .post(`${domainURL}/login`, null, { params: userLoginDetails })
-      .pipe(catchError(HttpErrorHandler.logAndReturnError));
+      .pipe(catchError(HttpErrorHandler.logAndReturnError), tap(() => this.isLoggedIn$.next(true)));
+  }
+
+  public logUserOut(): Observable<void> {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.isLoggedIn$.next(false);
+    return EMPTY;
   }
 }
 
@@ -51,9 +61,9 @@ export class GetAllMoviesService {
         Authorization: "Bearer " + this.token,
       }),
     }).pipe(
-        map((res: any) => res || {}),
-        catchError(HttpErrorHandler.logAndReturnError)
-      )
+      map((res: any) => res || {}),
+      catchError(HttpErrorHandler.logAndReturnError)
+    )
   }
 }
 
@@ -66,15 +76,15 @@ export class GetOneMovieService {
 
   token = localStorage.getItem("token");
 
-  public getOneMovie(movieDetails: any): Observable<any> {
+  public getOneMovie(movieTitle: string): Observable<any> {
     return this.http.get(
-      `${domainURL}/movies/${movieDetails}`, {
+      `${domainURL}/movies/${movieTitle.replace(/\s/g, '%20')}`, {
       headers: new HttpHeaders({
         Authorization: "Bearer " + this.token,
       }),
     })
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   }
@@ -89,16 +99,16 @@ export class GetDirectorService {
 
   token = localStorage.getItem("token");
 
-  public getDirector(directorDetails: any): Observable<any> {
+  public getDirector(directorName: string): Observable<any> {
     return this.http.get(
-      `${domainURL}/directors/${directorDetails}`, {
+      `${domainURL}/directors/${directorName.replace(/\s/g, '%20')}`, {
       headers: new HttpHeaders({
         Authorization: "Bearer " + this.token,
       }),
     }
     )
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   }
@@ -113,15 +123,15 @@ export class GetGenreService {
 
   token = localStorage.getItem("token");
 
-  public getGenre(genreDetails: any): Observable<any> {
+  public getGenre(genreName: string): Observable<any> {
     return this.http.get(
-      `${domainURL}/genre/${genreDetails}`, {
+      `${domainURL}/genres/${genreName.replace(/\s/g, '%20')}`, {
       headers: new HttpHeaders({
         Authorization: "Bearer " + this.token,
       }),
     })
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   }
@@ -131,23 +141,23 @@ export class GetGenreService {
   providedIn: 'root'
 })
 export class GetUserDetailsService {
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
-  username = localStorage.getItem("user");
-  token = localStorage.getItem("token");
+  username = localStorage.getItem('user');
+  token = localStorage.getItem('token');
 
-  public getUserDetails(username: string): Observable<any> {
+  public getUserDetails(): Observable<any> {
     return this.http.get(
-      `${domainURL}/users/${username}`, {
-      headers: new HttpHeaders({
-        Authorization: "Bearer " + this.token,
-      }),
-    })
-      .pipe(
-        map((res) => { res || {} }),
-        catchError(HttpErrorHandler.logAndReturnError)
-      );
+      `${domainURL}/users/${this.username}`,
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`,
+        }),
+      }
+    ).pipe(
+      map((res) => res || {}),
+      catchError(HttpErrorHandler.logAndReturnError)
+    );
   }
 }
 
@@ -161,15 +171,15 @@ export class GetUserFavoriteMoviesService {
   username = localStorage.getItem("user");
   token = localStorage.getItem("token");
 
-  public getUserFavoriteMovies(username: string): Observable<any> {
+  public getUserFavoriteMovies(): Observable<any> {
     return this.http.get(
-      `${domainURL}/users/${username}/favorites`, {
+      `${domainURL}/users/${this.username}`, {
       headers: new HttpHeaders({
         Authorization: "Bearer " + this.token,
       }),
     })
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res.FavoriteMovies || []),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   }
@@ -185,17 +195,17 @@ export class AddUserFavoriteMovieService {
   username = localStorage.getItem("user");
   token = localStorage.getItem("token");
 
-  public addUserFavoriteMovie(username: string, movieId: string): Observable<any> {
+  public addUserFavoriteMovie(movieId: string): Observable<any> {
     return this.http.post(
-      `${domainURL}/users/${username}/favorites/${movieId}`,
-      { FavoriteMovie: movieId },
+      `${domainURL}/users/${this.username}/favorites/${movieId}`,
+      null,
       {
         headers: new HttpHeaders({
           Authorization: "Bearer " + this.token,
         }),
       })
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   }
@@ -211,15 +221,15 @@ export class DeleteUserFavoriteMovieService {
   username = localStorage.getItem("user");
   token = localStorage.getItem("token");
 
-  public deleteUserFavoriteMovie(username: string, movieId: string): Observable<any> {
+  public deleteUserFavoriteMovie(movieId: string): Observable<any> {
     return this.http.delete(
-      `${domainURL}/users/${username}/favorites/${movieId}`, {
+      `${domainURL}/users/${this.username}/favorites/${movieId}`, {
       headers: new HttpHeaders({
         Authorization: "Bearer " + this.token,
       }),
     })
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   }
@@ -235,20 +245,21 @@ export class EditUserDetailsService {
   username = localStorage.getItem("user");
   token = localStorage.getItem("token");
 
-  public editUserDetails(username: string, userNewDetails: any): Observable<any> {
-    return this.http.post(
-      `${domainURL}/users/${username}`,
-      userNewDetails,
+  public editUserDetails(newUserDetails: any): Observable<any> {
+    console.log(`User updating to: ${newUserDetails}`);
+    return this.http.put(
+      `${domainURL}/users/${this.username}`,
+      newUserDetails,
       {
         headers: new HttpHeaders({
           Authorization: "Bearer " + this.token,
         }),
       })
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
-  }
+  };
 }
 
 @Injectable({
@@ -263,13 +274,13 @@ export class DeleteUserService {
 
   public deleteUser(username: string): Observable<any> {
     return this.http.delete(
-      `${domainURL}/users/${username}`, {
+      `${domainURL} /users/${username} `, {
       headers: new HttpHeaders({
         Authorization: "Bearer " + this.token,
       }),
     })
       .pipe(
-        map((res) => { res || {} }),
+        map((res: any) => res || {}),
         catchError(HttpErrorHandler.logAndReturnError)
       );
   }
