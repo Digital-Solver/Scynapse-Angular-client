@@ -33,4 +33,9 @@ export class HeaderComponent {
   goToProfile() {
     this.router.navigate(['profile']);
   }
+
+  logout() {
+    this.router.navigate(['welcome']);
+    localStorage.clear();
+  }
 }
