@@ -1,17 +1,22 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <a mat-button href="/" (click)="goToHome()">
+    <a mat-button (click)="goToHome()">
       <mat-icon>home</mat-icon> Home
     </a>
     <ng-container *ngIf="loginService.isLoggedIn$ | async as isLoggedIn">
-      <a mat-button href="/movies" (click)="goToMovies()">
+      <a mat-button (click)="goToMovies()">
         <mat-icon>ondemand_video</mat-icon> Movies
       </a>
     </ng-container>
     <span class="spacer"></span>
     <ng-container *ngIf="loginService.isLoggedIn$ | async as isLoggedIn">
-      <a mat-button href="/profile" (click)="goToProfile()">
+      <a mat-button (click)="goToProfile()">
         <mat-icon>person</mat-icon> Profile
+      </a>
+    </ng-container>
+    <ng-container *ngIf="loginService.isLoggedIn$ | async as isLoggedIn">
+      <a mat-button (click)="logout()">
+        <mat-icon>logout</mat-icon> Log Out
       </a>
     </ng-container>
   </mat-toolbar-row>
