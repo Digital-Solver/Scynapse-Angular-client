@@ -40,7 +40,7 @@ export class MovieCardFavoriteComponent implements OnInit {
   }
 
   goToMovie(movieTitle: any): void {
-    this.router.navigate(['/movies', movieTitle])
+    this.router.navigate(['movies', movieTitle])
   }
 
   addFavoriteMovie(movieId: string) {
