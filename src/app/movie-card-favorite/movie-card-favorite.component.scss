@@ -1,0 +1,43 @@
+$card-background: #ededed;
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+mat-card {
+  margin: 20px;
+  max-width: 300px;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  background-color: $card-background;
+  justify-content: center;
+}
+
+img {
+  max-height: 300px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+mat-card-actions {
+  max-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.hand-cursor {
+  cursor: pointer;
+}
+
+.loading-cursor {
+  cursor: progress;
+}

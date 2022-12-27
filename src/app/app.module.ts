@@ -29,6 +29,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MovieViewComponent } from './movie-view/movie-view.component';
 import { GenreViewComponent } from './genre-view/genre-view.component';
 import { DirectorViewComponent } from './director-view/director-view.component';
+import { MovieCardFavoriteComponent } from './movie-card-favorite/movie-card-favorite.component';
 
 
 const appRoutes: Routes = [
@@ -53,6 +54,7 @@ const appRoutes: Routes = [
     MovieViewComponent,
     GenreViewComponent,
     DirectorViewComponent,
+    MovieCardFavoriteComponent,
   ],
   imports: [
     BrowserModule,
