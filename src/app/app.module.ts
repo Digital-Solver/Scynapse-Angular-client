@@ -31,7 +31,9 @@ import { GenreViewComponent } from './genre-view/genre-view.component';
 import { DirectorViewComponent } from './director-view/director-view.component';
 import { MovieCardFavoriteComponent } from './movie-card-favorite/movie-card-favorite.component';
 
-
+/**
+ * Defines the routes for the app.
+ */
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
@@ -42,6 +44,12 @@ const appRoutes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' }
 ];
 
+/**
+ * The root module of the app.
+ *
+ * @export
+ * @class AppModule
+ */
 @NgModule({
   declarations: [
     AppComponent,
