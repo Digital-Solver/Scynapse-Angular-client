@@ -28,14 +28,14 @@ export class HeaderComponent {
     public loginService: UserLoginService
   ) { }
 
-  /** Initialises component, determining whether the user is logged in or not. */
+  /** Initializes the component by subscribing to the `isLoggedIn$` observable to determine whether the user is logged in. */
   ngOnInit() {
     this.loginService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
     });
   }
 
-  /** Navigates to Home */
+  /** Navigates to the Home page */
   goToHome() {
     this.router.navigate(['']);
   }

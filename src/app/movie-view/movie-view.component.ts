@@ -7,6 +7,11 @@ import { GenreViewComponent } from '../genre-view/genre-view.component';
 
 /**
  * The Movie View component of the app.
+ * 
+ * @remarks
+ * This component is responsible for displaying details of a specific movie to the user. 
+ * It retrieves the movie data from the API using the `GetOneMovieService`, and displays the data in the view. 
+ * It also allows the user to view additional information about the movie's director and genre by opening dialogs containing that data.
  */
 @Component({
   selector: 'app-movie-detail-view',
@@ -16,12 +21,12 @@ import { GenreViewComponent } from '../genre-view/genre-view.component';
 export class MovieViewComponent implements OnInit {
   movie: any;
 
-  /**
-   * Constructs a new instance of the `MovieViewComponent`.
+  /** 
+   * Constructs a new instance of the MovieViewComponent.
    * 
-   * @param route The active route in the Angular Router.
-   * @param getMovieService The service that gets movie data from the API.
-   * @param dialog The Angular Material dialog import.
+   * @param route The active route in the Angular Router, used to get the movie title from the URL.
+   * @param getMovieService The service that retrieves movie data from the API.
+   * @param dialog The Angular Material dialog service, used to open the director and genre dialogs. 
    */
   constructor(
     private route: ActivatedRoute,
@@ -30,7 +35,7 @@ export class MovieViewComponent implements OnInit {
   ) { }
 
   /**
-   * Initialises the component with the Movie Title and gets that Movie's data.
+   * Initializes the component and fetches the data for the movie specified in the route parameters.
    */
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -42,16 +47,16 @@ export class MovieViewComponent implements OnInit {
   }
 
   /**
-   * Opens a dialog containing director data.
+   * Opens a dialog containing the specified director's data.
    * 
-   * @param director The director data, taken from the movie data.
+   * @param director The director's data, taken from the movie data.
    */
   openDirectorModal(director: string) {
     this.dialog.open(DirectorViewComponent, { data: { director } })
   }
 
   /**
-   * Opens a dialog containing genre data.
+   * Opens a dialog containing a specified genre's data.
    * 
    * @param genre The genre data, taken from the movie data.
    */

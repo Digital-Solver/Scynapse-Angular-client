@@ -3,7 +3,13 @@ import { GetDirectorService } from '../fetch-api-data.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 
-/** The director view component of the app */
+/**
+ * The Director View component of the app displays detailed information about a particular director.
+ * 
+ * @remarks
+ * This component is displayed in a dialog window and is initialized with the Director data passed through the dialog's data object.
+ * The Director data is fetched from the API using the `GetDirectorService`.
+ */
 @Component({
   selector: 'app-director-detail-view',
   templateUrl: './director-view.component.html',

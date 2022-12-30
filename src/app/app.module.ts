@@ -32,8 +32,13 @@ import { DirectorViewComponent } from './director-view/director-view.component';
 import { MovieCardFavoriteComponent } from './movie-card-favorite/movie-card-favorite.component';
 
 /**
- * Defines the routes for the app.
- */
+* Defines the routes for the app.
+
+* @remarks
+* The app routes define the paths that can be navigated to within the app. Each route consists of a path and a component.
+* The path is the string that appears in the URL, and the component is the Angular component that is displayed when the
+* path is navigated to.
+*/
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
@@ -46,6 +51,7 @@ const appRoutes: Routes = [
 
 /**
  * The root module of the app.
+ * Responsible for defining the application's components, services, and routes, as well as importing the necessary Angular modules and third-party libraries.
  *
  * @export
  * @class AppModule

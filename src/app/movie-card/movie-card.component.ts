@@ -64,10 +64,10 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
- *  Navigates to the movie view page for the specified movie
- *
- *  @param movieTitle The title of the movie to view
- */
+   * Navigates to the movie view page for the specified movie
+   *
+   *  @param movieTitle The title of the movie to view
+   */
   goToMovie(movieTitle: any): void {
     this.router.navigate(['movies', movieTitle])
   }
@@ -76,6 +76,7 @@ export class MovieCardComponent implements OnInit {
   *  Adds a movie to the current user's favorite movies
   *
   *  @param movieId The ID of the movie to add as a favorite
+  *  @throws If the server returns an error, a console.log is displayed with the error message.
   */
   addFavoriteMovie(movieId: string) {
     this.processing = true;
@@ -99,6 +100,7 @@ export class MovieCardComponent implements OnInit {
   *  Removes a movie from the current user's favorite movies.
   *
   *  @param movieId The ID of the movie to remove from favorites
+  *  @throws If the server returns an error, a console.log is displayed with the error message.
   */
   removeFavoriteMovie(movieId: string) {
     this.processing = true;

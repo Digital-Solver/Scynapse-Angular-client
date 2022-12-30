@@ -6,6 +6,9 @@ import * as bcrypt from 'bcryptjs';
 
 /**
  * The Profile View component of the app.
+ * 
+ * @remarks
+ * Allows users to view and edit their personal profile details, such as username, email, birthday, and password.
  */
 @Component({
   selector: 'app-profile-view',
@@ -15,7 +18,7 @@ import * as bcrypt from 'bcryptjs';
 export class ProfileViewComponent implements OnInit {
 
   /**
-   * Creates the form group.
+   * Form group containing form controls for user details: `Username`, `Email`, `Birthday`, and `Password`.
    */
   form = new FormGroup({
     Username: new FormControl('', Validators.required),
@@ -24,22 +27,18 @@ export class ProfileViewComponent implements OnInit {
     Password: new FormControl('')
   });
 
-  /**
-   * Is editing mdoe enabled.
-   */
+  /** Indicates whether editing mode is enabled. */
   editing = false;
 
-  /**
-   * The encrypted password string from the database.
-   */
+  /** The encrypted password string from the database. */
   hashedPassword = "";
 
   /**
    * Constructs a new instance of the `ProfileViewComponent`.
    * 
    * @param getUserDetailsService The service that gets user details from the API.
-   * @param editUserDetailsService The service that edits the user details form the API.
-   * @param formBuilder The Angural import for reactive forms
+   * @param editUserDetailsService The service that updates user details using the API.
+   * @param formBuilder The Angular service for building reactive forms.
    */
   constructor(
     private getUserDetailsService: GetUserDetailsService,
@@ -48,7 +47,7 @@ export class ProfileViewComponent implements OnInit {
   ) { }
 
   /**
-   * Initialises the component with form fields: Username, Email, Birthday, and Password.
+   * Initializes the component by creating the form group and setting the form fields to the user's current profile information.
    */
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -84,19 +83,18 @@ export class ProfileViewComponent implements OnInit {
   }
 
   /**
-   * Compares the user-entered password with the encyrpted password and returns whether it matches or not.
-   * 
-   * @param password Th user-entered password.
-   * @param hashedPassword The encrypted password from the server.
-   * @returns Boolean of whether passwords match or not.
-   */
+  * Validates the given password by comparing it to the encrypted password from the server.
+  * 
+  * @param password The user-entered password to be validated.
+  * @param hashedPassword The encrypted password from the server to be compared to.
+  * @returns `true` if the passwords match, `false` otherwise.
+  */
   validatePassword(password: string, hashedPassword: string): boolean {
     return bcrypt.compareSync(password, hashedPassword);
   }
 
   /**
-   * Enables editing if password is validated.
-   * Does not enable editing if password is incorrect, then alerts the user.
+   * Enables editing if password is correct. Displays an alert if not.
    */
   allowEdits() {
     const currentPassword = prompt('Please enter your current password:');
@@ -108,9 +106,7 @@ export class ProfileViewComponent implements OnInit {
     }
   }
 
-  /**
-   * Submits the form to edit user details.
-   */
+  /** Submits the form to edit user details. */
   submitForm() {
     const newUserDetails = this.form.value;
     console.log(this.form.value)

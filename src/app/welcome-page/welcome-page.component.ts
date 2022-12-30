@@ -8,6 +8,10 @@ import { Router } from '@angular/router';
 
 /**
  * The welcome page component of the app.
+ * 
+ * @remarks
+ * From this page, the user can either login or register.
+ * Once login details are in localstorage, the welcome page will show a button that navigates to the 'Movies' page.
  */
 @Component({
   selector: 'app-root',
@@ -15,22 +19,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./welcome-page.component.scss']
 })
 export class WelcomePageComponent {
-    /**
-   * The title of the app.
-   */
+  /** The title of the app. */
   title = 'myFlix-Angular-client';
 
-  /**
-   * Whether the user is logged in.
-   */
+  /** Whether the user is logged in. */
   isLoggedIn: boolean = false;
 
   /**
    * Constructs a new instance of the `WelcomePageComponent`.
    *
-   * @param dialog The dialog service.
-   * @param loginService The login service.
-   * @param router The router service.
+   * @param dialog The dialog service for opening the user registration and login dialogs.
+   * @param loginService The login service for checking the login status of the user.
+   * @param router The router service for navigating to different pages of the app.
    */
   constructor(
     public dialog: MatDialog,
@@ -38,36 +38,28 @@ export class WelcomePageComponent {
     private router: Router,
     ) { }
 
-  /**
-   * Initializes the component.
-   */
+  /** Initializes the component by subscribing to the login status of the user. */
   ngOnInit() {
     this.loginService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
     })
   }
 
-  /**
-   * Opens the user registration dialog.
-   */
+  /** Opens the user registration dialog. */
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
       width: '280px'
     });
   }
 
-  /**
-   * Opens the user login dialog.
-   */
+  /** Opens the user login dialog. */
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
       width: '280px'
     });
   }
 
-  /**
-   * Navigates to the 'Movies' page.
-   */
+  /** Navigates to the 'Movies' page. */
   goToMovies() {
     this.router.navigate(['movies']);
   }

@@ -5,6 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 /**
  * The User Registration view of the app.
+ * 
+ * @remarks
  * Allows the uer to enter their registration details and submit them to the server.
  * If the registration is successful, the user is notified via the Snack Bar popup.
  */
@@ -40,16 +42,19 @@ export class UserRegistrationFormComponent implements OnInit {
     public snackBar: MatSnackBar) { }
 
   /**
-  * Initialises the component
+  * Angular lifecycle hook that initializes the component.
+  * 
+  * @remarks
+  * This method is required by the OnInit interface and is called by Angular when the component is initialized.
+  * It is currently empty. This follows best practice, but it can also be used to perform any necessary initialization logic for the component in future.
   */
   ngOnInit(): void { }
   
   /**
-   * Registers the user by calling the user registration API endpoint with the user's data.
-   * 
-   * @returns `void`
-   * @throws If the server returns an error, a Snack Bar popup is displayed with the error message.
-   */
+  * Registers the user by calling the user registration API endpoint with the user's data.
+  * 
+  * @throws If the server returns an error, a Snack Bar popup is displayed with the error message.
+  */
   registerUser(): void {
     this.fetchApiData.registerUser(this.userData).subscribe({
       next: (result) => {

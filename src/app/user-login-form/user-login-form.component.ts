@@ -5,6 +5,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 /**
  * The User Login component view of the app
+ * 
+ * @remarks
+ * Allows the user to enter their login credentials and submit them to the server.
+ * If the login is successful, the user is redirected to the Movies page and notified via a Snack Bar popup.
  */
 @Component({
   selector: 'app-user-login-form',
@@ -13,16 +17,17 @@ import { Router } from '@angular/router';
 })
 export class UserLoginFormComponent implements OnInit {
   
+  /** The user's login data, including Username and Password */
   @Input() userData = { Username: '', Password: '' };
 
   /**
-   * Constructs a new instance of the `UserLoginFormComponent`.
-   * 
-   * @param fetchApiData The API data fetching service
-   * @param dialogRef The reference to the dialog
-   * @param snackBar The Angular Material Snack Bar import
-   * @param router The Angular Router import
-   */
+  * Constructs a new instance of the UserLoginFormComponent.
+  * 
+  * @param fetchApiData {UserLoginService} The API data fetching service that calls the user login API endpoint.
+  * @param dialogRef {MatDialogRef} The reference to the dialog containing this component.
+  * @param snackBar {MatSnackBar} The Snack Bar service provided by Angular Material.
+  * @param router {Router} The router service provided by Angular.
+  */
   constructor(
     public fetchApiData: UserLoginService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
@@ -30,12 +35,20 @@ export class UserLoginFormComponent implements OnInit {
     private router: Router) { }
 
   /**
-   * Initialises the component
-   */
+  * Angular lifecycle hook that initializes the component.
+  * 
+  * @remarks
+  * This method is required by the OnInit interface and is called by Angular when the component is initialized.
+  * It is currently empty. This follows best practice, but it can also be used to perform any necessary initialization logic for the component in future.
+  */
   ngOnInit(): void { }
 
   /**
-   * Logs the user in and alerts the user of the success or failure.
+   * Logs the user in and alerts the user of the result.
+   * 
+   * @throws If the server returns an error, a Snack Bar popup is displayed with the error message.
+   * 
+   * @remarks
    * If successful: Sets `user` and `token in `localStorage`.
    * If unsuccessful: Returns the error to the user.
    */

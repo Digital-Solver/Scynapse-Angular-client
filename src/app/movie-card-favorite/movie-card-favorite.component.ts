@@ -6,7 +6,7 @@ import { DeleteUserFavoriteMovieService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 
 /**
- * The Movie Card Favorite component: displays a list of favorite movies.
+ * The Movie Card Favorite component displays a list of favorite movies.
  */
 @Component({
   selector: 'app-movie-card-favorite',
@@ -14,19 +14,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./movie-card-favorite.component.scss']
 })
 export class MovieCardFavoriteComponent implements OnInit {
-    /**
-   * The list of movies.
-   */
+  /** The list of movies. */
   movies: any;
 
-  /**
-   * The list of favorite movies.
-   */
+  /** The list of favorite movies. */
   favoriteMovies: any;
 
-  /**
-   * Whether a request is being processed.
-   */
+  /** Whether a request is being processed. */
   processing: boolean = false;
 
   /**
@@ -60,9 +54,7 @@ export class MovieCardFavoriteComponent implements OnInit {
     });
   }
 
-  /**
- * Sets the favorite property for each movie.
- */
+  /** Sets the favorite property for each movie. */
   setFavoriteProperties() {
     this.movies.forEach((movie: any) => {
       movie.favorite = this.favoriteMovies.includes(movie._id);
@@ -82,6 +74,8 @@ export class MovieCardFavoriteComponent implements OnInit {
  * Adds a movie to the user's favorite movies.
  *
  * @param movieId The ID of the movie.
+ * @returns An observable of the HTTP response.
+ * @throws If the server returns an error, a console.log is displayed with the error message.
  */
   addFavoriteMovie(movieId: string) {
     this.processing = true;
@@ -105,6 +99,8 @@ export class MovieCardFavoriteComponent implements OnInit {
  * Removes a movie from the user's favorite movies.
  *
  * @param movieId The ID of the movie.
+ * @returns An observable of the HTTP response.
+ * @throws If the server returns an error, a console.log is displayed with the error message.
  */
   removeFavoriteMovie(movieId: string) {
     this.processing = true;
