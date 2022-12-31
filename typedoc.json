@@ -1,4 +1,5 @@
 {
-    "entryPoints": ["src/app/app.component.ts", "src/app/app.module.ts"],
-    "out": "docs"
+    "entryPoints": ["src/app.component.ts"],
+    "out": "docs",
+    "entryPointStrategy": "expand",
 }

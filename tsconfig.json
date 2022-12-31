@@ -28,7 +28,7 @@
     "strictTemplates": true
   },
   "typedocOptions": {
-    "entryPoints": ["src/app/app.component.ts", "src/app/app.module.ts"],
+    "entryPoints": ["src/"],
     "out": "docs"
   }
 }
