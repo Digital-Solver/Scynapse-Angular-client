@@ -1,5 +1,7 @@
 # Scynapse - Angular Client
 
+Live site: https://digital-solver.github.io/scynapse-angular/
+
 A single-page, responsive movie app built with Angular, with routing and several interface views. The app allows users to access information about different movies, directors, and genres, as well as create and update their own profiles with their favorite movies. 
 
 The client-side of the app supports the existing server-side from the movie-api repository by facilitating user requests and rendering the response from the server-side via a number of different interface views. The app is accompanied by relevant materials, including documentation, a kanban board containing user stories, and story points.
