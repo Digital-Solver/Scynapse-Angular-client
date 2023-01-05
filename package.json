@@ -1,5 +1,5 @@
 {
-  "name": "scynapse-angular-client",
+  "name": "scynapse-angular",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng deploy --base-href='/Scynapse-Angular-client/'"
+    "deploy": "ng deploy --base-href='/scynapse-angular/'"
   },
   "private": true,
   "dependencies": {

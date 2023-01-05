@@ -8,14 +8,14 @@ The client-side of the app supports the existing server-side from the movie-api 
 
 ## Table of Contents
 
-* [Features](https://github.com/Digital-Solver/Scynapse-Angular-client/edit/main/README.md#Features)
-* [Technologies](https://github.com/Digital-Solver/Scynapse-Angular-client/edit/main/README.md#Technologies)
-* [Installation](https://github.com/Digital-Solver/Scynapse-Angular-client/edit/main/README.md#Installation)
-* [Materials](https://github.com/Digital-Solver/Scynapse-Angular-client/edit/main/README.md#Materials)
-* [Contribution Guideilnes](https://github.com/Digital-Solver/Scynapse-Angular-client/edit/main/README.md#Contribution)
-* [License](https://github.com/Digital-Solver/Scynapse-Angular-client/edit/main/README.md#License)
-* [Contact](https://github.com/Digital-Solver/Scynapse-Angular-client/edit/main/README.md#Contact)
-* [Resources](https://github.com/Digital-Solver/Scynapse-Angular-client/edit/main/README.md#Resources)
+* [Features](https://github.com/Digital-Solver/scynapse-angular/edit/main/README.md#Features)
+* [Technologies](https://github.com/Digital-Solver/scynapse-angular/edit/main/README.md#Technologies)
+* [Installation](https://github.com/Digital-Solver/scynapse-angular/edit/main/README.md#Installation)
+* [Materials](https://github.com/Digital-Solver/scynapse-angular/edit/main/README.md#Materials)
+* [Contribution Guideilnes](https://github.com/Digital-Solver/scynapse-angular/edit/main/README.md#Contribution)
+* [License](https://github.com/Digital-Solver/scynapse-angular/edit/main/README.md#License)
+* [Contact](https://github.com/Digital-Solver/scynapse-angular/edit/main/README.md#Contact)
+* [Resources](https://github.com/Digital-Solver/scynapse-angular/edit/main/README.md#Resources)
 
 ## Features
 
@@ -49,8 +49,8 @@ Scynapse is built with the following technologies:
 
 1. Install the latest version of Node.js from the official website (https://nodejs.org/) by following the prompts to complete the installation process.
 2. After installing Node.js, open your terminal and run the command `npm install -g @angular/cli` to install the Angular CLI globally. This will allow you to use the Angular CLI commands from any directory on your machine.
-3. Clone the repository by running `git clone https://github.com/Digital-Solver/Scynapse-Angular-client.git` in your terminal.
-4. Navigate to the root directory of the cloned repository by running `cd Scynapse-Angular-client`.
+3. Clone the repository by running `git clone https://github.com/Digital-Solver/scynapse-angular.git` in your terminal.
+4. Navigate to the root directory of the cloned repository by running `cd scynapse-angular`.
 5. Run `npm install` to install all required dependencies listed in the package.json file.
 6. Run `ng serve` to start the development server. The application will be available at http://localhost:4200/ and will automatically reload whenever you make changes to the source files.
 
